@@ -1,0 +1,11 @@
+clusterName: my-cluster
+
+controller:
+  replicas: 3
+
+broker:
+  replicas: 3
+
+kafka:
+  version: 4.1.0
+  metadataVersion: 4.1-IV1

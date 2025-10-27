@@ -4,8 +4,6 @@ metadata:
   name: {{ .Values.clusterName }}
 spec:
   kafka:
-    authorization:
-      type: simple
     version: {{ .Values.kafka.version }}
     metadataVersion: {{ .Values.kafka.metadataVersion }}
     listeners:

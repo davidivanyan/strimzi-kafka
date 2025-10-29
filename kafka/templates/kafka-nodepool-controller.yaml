@@ -3,7 +3,7 @@ kind: KafkaNodePool
 metadata:
   name: controller
   labels:
-    strimzi.io/cluster: {{ .Values.clusterName }}
+    strimzi.io/cluster: {{ .Values.kafka.clusterName }}
 spec:
   replicas: {{ .Values.kafka.replicas }}
   roles:

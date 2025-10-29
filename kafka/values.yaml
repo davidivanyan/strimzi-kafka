@@ -7,7 +7,7 @@ kafka:
   metadataVersion: 4.0-IV3
 ---
 topics:
-  test:
+  my-topic:
     replicas: 3
     partitions: 50
   second:
@@ -26,11 +26,5 @@ users:
         patternType: literal
         operations:
           - Describe
-          - Read
-        host: "*"
-      - type: group
-        name: my-group
-        patternType: literal
-        operations:
           - Read
         host: "*"

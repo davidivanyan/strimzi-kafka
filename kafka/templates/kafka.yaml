@@ -7,6 +7,10 @@ metadata:
     strimzi.io/kraft: enabled
 spec:
   kafka:
+    authorization:
+      type: simple
+      superUsers:
+        - user1
     version: {{ .Values.kafka.version }}
     metadataVersion: {{ .Values.kafka.metadataVersion }}
     listeners:

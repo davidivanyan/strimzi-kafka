@@ -7,20 +7,20 @@ kafka:
   metadataVersion: 4.0-IV3
 
 topics:
-  my-topic:
+  topic1:
     replicas: 3
     partitions: 50
-  second:
+  topic2:
     replicas: 3
     partitions: 100
 
 users:
-  my-user:
+  user1:
     authenticationType: tls
     authorizationType: simple
     acls:
       - type: topic
-        name: my-topic
+        name: topic1
         patternType: literal
         operations:
           - Describe

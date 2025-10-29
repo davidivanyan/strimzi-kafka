@@ -1,11 +1,7 @@
 clusterName: my-cluster
 
-controller:
-  replicas: 3
-
-broker:
-  replicas: 3
-
 kafka:
+  replicas: 3
+  minInSyncReplicas: 2
   version: 4.0.0
   metadataVersion: 4.0-IV3

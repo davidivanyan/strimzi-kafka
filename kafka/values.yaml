@@ -4,10 +4,10 @@ kafka:
   minInSyncReplicas: 2
   version: 4.0.0
   metadataVersion: 4.0-IV3
-topics:
-  test:
-    replicas: 3
-    partitions: 50
-  second:
-    replicas: 3
-    partitions: 100
+#topics:
+#  test:
+#    replicas: 3
+#    partitions: 50
+#  second:
+#    replicas: 3
+#    partitions: 100

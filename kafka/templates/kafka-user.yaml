@@ -13,17 +13,17 @@ spec:
   authorization:
     type: {{ $user.authorizationType | default "simple" }}
     acls:
-      {{- range $acl := $user.acls }}
+{{- range $acl := $user.acls }}
       - resource:
           type: {{ $acl.type | default "topic" }}
           name: {{ $acl.name }}
           patternType: {{ $acl.patternType | default "literal" }}
         operations:
-          {{- range $op := $acl.operations }}
+{{- range $op := $acl.operations }}
           - {{ $op }}
-          {{- end }}
+{{- end }}
         host: {{ $acl.host | default "*" }}
-      {{- end }}
+{{- end }}
 ---
 {{- end }}
 {{- end }}

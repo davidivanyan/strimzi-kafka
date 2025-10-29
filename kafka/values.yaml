@@ -25,4 +25,4 @@ users:
         operations:
           - Describe
           - Read
-        host: "*"
+        host: 127.0.0.1

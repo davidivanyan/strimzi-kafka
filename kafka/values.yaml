@@ -17,7 +17,7 @@ topics:
 users:
   my-user:
     authenticationType: tls
-    authorizationType: none
+    authorizationType: simple
     acls:
       - type: topic
         name: my-topic

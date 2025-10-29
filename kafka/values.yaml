@@ -1,9 +1,11 @@
+---
 kafka:
   clusterName: my-cluster
   replicas: 3
   minInSyncReplicas: 2
   version: 4.0.0
   metadataVersion: 4.0-IV3
+---
 topics:
   test:
     replicas: 3
@@ -11,3 +13,24 @@ topics:
   second:
     replicas: 3
     partitions: 100
+
+---
+
+users:
+  my-user:
+    authenticationType: tls
+    authorizationType: simple
+    acls:
+      - type: topic
+        name: my-topic
+        patternType: literal
+        operations:
+          - Describe
+          - Read
+        host: "*"
+      - type: group
+        name: my-group
+        patternType: literal
+        operations:
+          - Read
+        host: "*"

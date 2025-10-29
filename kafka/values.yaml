@@ -1,7 +1,13 @@
-clusterName: my-cluster
-
 kafka:
+  clusterName: my-cluster
   replicas: 3
   minInSyncReplicas: 2
   version: 4.0.0
   metadataVersion: 4.0-IV3
+topics:
+  test:
+    replicas: 3
+    partitions: 50
+  second:
+    replicas: 3
+    partitions: 100

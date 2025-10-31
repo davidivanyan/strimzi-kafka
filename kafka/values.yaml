@@ -1,10 +1,22 @@
 ---
 kafka:
-  clusterName: my-cluster
-  replicas: 3
-  minInSyncReplicas: 2
   version: 4.0.0
   metadataVersion: 4.0-IV3
+
+  clusterName: kafka
+  autoCreateTopics: "false"
+
+  replication:
+    defaultReplicationFactor: 3
+    offsetsReplicationFactor: 3
+    minInSyncReplicas: 2
+    transactionStateReplicationFactor: 3
+    transactionStateMinInSyncReplica: 2
+
+  resources:
+    memory: 16Gi
+    cpuRequest: "8"
+    cpuLimit: "12"
 
 topics:
   topic1:

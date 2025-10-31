@@ -7,10 +7,6 @@ metadata:
     strimzi.io/kraft: enabled
 spec:
   kafka:
-    authorization:
-      type: simple
-      superUsers:
-        - user1
     version: {{ .Values.kafka.version }}
     metadataVersion: {{ .Values.kafka.metadataVersion }}
     listeners:
@@ -23,11 +19,19 @@ spec:
         type: internal
         tls: true
     config:
-      offsets.topic.replication.factor: {{ .Values.kafka.replicas }}
-      transaction.state.log.replication.factor: 3
-      transaction.state.log.min.isr: 2
-      default.replication.factor: {{ .Values.kafka.replicas }}
-      min.insync.replicas: {{ .Values.kafka.minInSyncReplicas }}
+      auto.create.topics.enable: {{ .Values.kafka.autoCreateTopics }}
+      offsets.topic.replication.factor: {{ .Values.kafka.replication.offsetsReplicationFactor }}
+      transaction.state.log.replication.factor: {{ .Values.kafka.replication.transactionStateReplicationFactor }}
+      transaction.state.log.min.isr: {{ .Values.kafka.replication.transactionStateMinInSyncReplica }}
+      default.replication.factor: {{ .Values.kafka.replication.defaultReplicationFactor }}
+      min.insync.replicas: {{ .Values.kafka.replication.minInSyncReplicas }}
+    resources: # (13)
+      requests:
+        memory: {{ .Values.kafka.resources.memory }}
+        cpu: {{ .Values.kafka.resources.cpuRequest }}
+      limits:
+        memory: {{ .Values.kafka.resources.memory }}
+        cpu: {{ .Values.kafka.resources.cpuLimit }}
   entityOperator:
     topicOperator: {}
     userOperator: {}

@@ -7,11 +7,11 @@ kafka:
   autoCreateTopics: "false"
 
   replication:
-    defaultReplicationFactor: 3
-    offsetsReplicationFactor: 3
-    minInSyncReplicas: 2
-    transactionStateReplicationFactor: 3
-    transactionStateMinInSyncReplica: 2
+    defaultReplicationFactor: 1
+    offsetsReplicationFactor: 1
+    minInSyncReplicas: 1
+    transactionStateReplicationFactor: 1
+    transactionStateMinInSyncReplica: 1
 
   resources:
     memory: 1Gi
@@ -20,10 +20,10 @@ kafka:
 
 topics:
   topic1:
-    replicas: 3
+    replicas: 1
     partitions: 50
   topic2:
-    replicas: 3
+    replicas: 1
     partitions: 100
 
 users:

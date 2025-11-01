@@ -14,9 +14,9 @@ kafka:
     transactionStateMinInSyncReplica: 2
 
   resources:
-    memory: 16Gi
-    cpuRequest: "8"
-    cpuLimit: "12"
+    memory: 1Gi
+    cpuRequest: "1"
+    cpuLimit: "2"
 
 topics:
   topic1:

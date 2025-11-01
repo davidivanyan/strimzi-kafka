@@ -5,7 +5,7 @@ metadata:
   labels:
     strimzi.io/cluster: {{ .Values.kafka.clusterName }}
 spec:
-  replicas: {{ .Values.kafka.replicas }}
+  replicas: {{ .Values.kafka.replication.defaultReplicationFactor }}
   roles:
     - controller
   storage:

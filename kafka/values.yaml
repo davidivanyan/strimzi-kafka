@@ -27,7 +27,7 @@ kafka:
       partitions: 100
 
   users:
-    - name: user10
+    - name: user1
       authenticationType: tls
       authorizationType: simple
       acls:

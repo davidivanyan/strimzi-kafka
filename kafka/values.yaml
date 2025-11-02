@@ -4,7 +4,7 @@ kafka:
   metadataVersion: 4.0-IV3
 
   clusterName: kafka
-  autoCreateTopics: "false"
+  autoCreateTopics: "true"
 
   replication:
     defaultReplicationFactor: 1
@@ -27,7 +27,7 @@ kafka:
       partitions: 100
 
   users:
-    - name: user1
+    - name: user10
       authenticationType: tls
       authorizationType: simple
       acls:
@@ -37,4 +37,4 @@ kafka:
           operations:
             - Describe
             - Read
-          host: "*"
+            - Write

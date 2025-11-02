@@ -37,3 +37,4 @@ kafka:
           operations:
             - Describe
             - Read
+          host: "*"

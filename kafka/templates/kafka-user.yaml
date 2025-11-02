@@ -18,9 +18,9 @@ spec:
           type: {{ .type }}
           name: {{ .name }}
           patternType: {{ .patternType | default "literal" }}
+          host: {{ .host | quote }}
         operations:
 {{ toYaml .operations | indent 10 }}
-        host: {{ .host | default '*' }}
       {{- end }}
 {{- end }}
 {{- end }}

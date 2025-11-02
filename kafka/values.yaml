@@ -18,23 +18,23 @@ kafka:
     cpuRequest: "1"
     cpuLimit: "2"
 
-topics:
-  topic1:
-    replicas: 1
-    partitions: 50
-  topic2:
-    replicas: 1
-    partitions: 100
+  topics:
+    - name: topic1
+      replicas: 1
+      partitions: 50
+    - name: topic2
+      replicas: 1
+      partitions: 100
 
-users:
-  user1:
-    authenticationType: tls
-    authorizationType: simple
-    acls:
-      - type: topic
-        name: topic1
-        patternType: literal
-        operations:
-          - Describe
-          - Read
-        host: 127.0.0.1
+  users:
+    user1:
+      authenticationType: tls
+      authorizationType: simple
+      acls:
+        - type: topic
+          name: topic1
+          patternType: literal
+          operations:
+            - Describe
+            - Read
+          host: 127.0.0.1

@@ -18,6 +18,8 @@ spec:
         port: 9093
         type: internal
         tls: true
+    authorization:
+      type: simple
     config:
       auto.create.topics.enable: {{ .Values.kafka.autoCreateTopics }}
       offsets.topic.replication.factor: {{ .Values.kafka.replication.offsetsReplicationFactor }}

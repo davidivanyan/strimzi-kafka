@@ -20,7 +20,7 @@ spec:
           patternType: {{ .patternType | default "literal" }}
         operations:
 {{ toYaml .operations | indent 10 }}
-        host: {{ .host | default "*" }}
+        host: {{ .host | default '*' }}
       {{- end }}
 {{- end }}
 {{- end }}

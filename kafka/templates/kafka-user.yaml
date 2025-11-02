@@ -1,29 +1,26 @@
-{{- if .Values.users }}
-{{- $cluster := .Values.kafka.clusterName | default "my-cluster" }}
-{{- range $username, $user := .Values.users }}
+{{- if .Values.kafka.users }}
+{{- range .Values.kafka.users }}
+---
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaUser
 metadata:
-  name: {{ $username }}
+  name: {{ .name }}
   labels:
-    strimzi.io/cluster: {{ $cluster }}
+    strimzi.io/cluster: {{ $.Values.kafka.clusterName }}
 spec:
   authentication:
-    type: {{ $user.authenticationType | default "tls" }}
+    type: {{ .authenticationType | default "tls" }}
   authorization:
-    type: {{ $user.authorizationType | default "simple" }}
+    type: {{ .authorizationType | default "simple" }}
     acls:
-{{- range $acl := $user.acls }}
+      {{- range .acls }}
       - resource:
-          type: {{ $acl.type | default "topic" }}
-          name: {{ $acl.name }}
-          patternType: {{ $acl.patternType | default "literal" }}
+          type: {{ .type }}
+          name: {{ .name }}
+          patternType: {{ .patternType | default "literal" }}
         operations:
-{{- range $op := $acl.operations }}
-          - {{ $op }}
-{{- end }}
-        host: {{ $acl.host | default "*" }}
-{{- end }}
----
+{{ toYaml .operations | indent 10 }}
+        host: {{ .host | default "*" }}
+      {{- end }}
 {{- end }}
 {{- end }}

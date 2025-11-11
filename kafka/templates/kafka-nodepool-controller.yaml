@@ -1,3 +1,4 @@
+{{- if .Values.kafka.version }}
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaNodePool
 metadata:
@@ -8,9 +9,16 @@ spec:
   replicas: {{ .Values.kafka.replication.defaultReplicationFactor }}
   roles:
     - controller
+  template:
+    pod:
+      securityContext:
+        runAsUser: 1000001
+        fsGroup: 0
   storage:
     type: jbod
     volumes:
       - id: 0
         type: ephemeral
         kraftMetadata: shared
+---
+{{- end }}

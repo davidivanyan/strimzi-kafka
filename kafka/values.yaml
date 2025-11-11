@@ -1,40 +1,39 @@
 ---
 kafka:
-  version: 4.0.0
-  metadataVersion: 4.0-IV3
+  #  version: 4.0.0
+  #  metadataVersion: 4.0-IV3
 
-  clusterName: kafka
-  autoCreateTopics: "true"
+  #  clusterName: kafka
+  #  autoCreateTopics: "true"
 
-  replication:
-    defaultReplicationFactor: 1
-    offsetsReplicationFactor: 1
-    minInSyncReplicas: 1
-    transactionStateReplicationFactor: 1
-    transactionStateMinInSyncReplica: 1
+  #  replication:
+  #    defaultReplicationFactor: 1
+  #    offsetsReplicationFactor: 1
+  #    minInSyncReplicas: 1
+  #    transactionStateReplicationFactor: 1
+  #    transactionStateMinInSyncReplica: 1
 
-  resources:
-    memory: 1Gi
-    cpuRequest: "1"
-    cpuLimit: "2"
+  #  resources:
+  #    memory: 1Gi
+  #    cpuRequest: "1"
+  #    cpuLimit: "2"
 
-  topics:
-    - name: topic1
-      replicas: 1
-      partitions: 50
-    - name: topic2
-      replicas: 1
-      partitions: 100
+  topics: {}
+  #  EXAMPLE
+  #  - name: topic1
+  #    replicas: 1
+  #    partitions: 50
 
-  users:
-    - name: user1
-      authenticationType: tls
-      authorizationType: simple
-      acls:
-        - type: topic
-          name: topic1
-          patternType: literal
-          operations:
-            - Describe
-            - Read
-            - Write
+  users: {}
+  #  EXAMPLE
+  #   - name: user1
+  #     authenticationType: tls
+  #     authorizationType: simple
+  #     acls:
+  #       - type: topic
+  #         name: topic1
+  #         patternType: literal
+  #         operations:
+  #           - Describe
+  #           - Read
+  #           - Write

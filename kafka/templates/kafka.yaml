@@ -1,3 +1,4 @@
+{{- if .Values.kafka.version }}
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
@@ -9,6 +10,11 @@ spec:
   kafka:
     version: {{ .Values.kafka.version }}
     metadataVersion: {{ .Values.kafka.metadataVersion }}
+    template:
+      pod:
+        securityContext:
+          runAsUser: 1000001
+          fsGroup: 0
     listeners:
       - name: plain
         port: 9092
@@ -37,3 +43,5 @@ spec:
   entityOperator:
     topicOperator: {}
     userOperator: {}
+---
+{{- end }}

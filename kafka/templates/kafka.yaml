@@ -11,13 +11,13 @@ spec:
   kafka:
     version: {{ .Values.kafka.version }}
     metadataVersion: {{ .Values.kafka.metadataVersion }}
-  template:
-    pod:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1001
-        runAsGroup: 1001
-        allowPrivilegeEscalation: false
+    template:
+      pod:
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1001
+          runAsGroup: 1001
+          allowPrivilegeEscalation: false
     listeners:
       - name: plain
         port: 9092

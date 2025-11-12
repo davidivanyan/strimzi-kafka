@@ -1,19 +1,19 @@
 ---
 kafka:
-    version: 4.1.0
-    metadataVersion: 4.1-IV1
+  version: 4.1.0
+  metadataVersion: 4.1-IV1
 
-    clusterName: kafka
-    autoCreateTopics: "true"
+  clusterName: kafka
+  autoCreateTopics: "true"
 
-    replication:
-      defaultReplicationFactor: 3
-      offsetsReplicationFactor: 2
-      minInSyncReplicas: 2
-      transactionStateReplicationFactor: 3
-      transactionStateMinInSyncReplica: 2
+  replication:
+    defaultReplicationFactor: 3
+    offsetsReplicationFactor: 2
+    minInSyncReplicas: 2
+    transactionStateReplicationFactor: 3
+    transactionStateMinInSyncReplica: 2
 
-    resources:
+  resources:
       memory: 1Gi
       cpuRequest: "1"
       cpuLimit: "2"

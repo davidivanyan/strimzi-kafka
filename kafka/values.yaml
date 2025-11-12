@@ -1,22 +1,22 @@
 ---
 kafka:
-  #  version: 4.0.0
-  #  metadataVersion: 4.0-IV3
+    version: 4.1.0
+    metadataVersion: 4.1-IV1
 
-  #  clusterName: kafka
-  #  autoCreateTopics: "true"
+    clusterName: kafka
+    autoCreateTopics: "true"
 
-  #  replication:
-  #    defaultReplicationFactor: 1
-  #    offsetsReplicationFactor: 1
-  #    minInSyncReplicas: 1
-  #    transactionStateReplicationFactor: 1
-  #    transactionStateMinInSyncReplica: 1
+    replication:
+      defaultReplicationFactor: 3
+      offsetsReplicationFactor: 2
+      minInSyncReplicas: 2
+      transactionStateReplicationFactor: 3
+      transactionStateMinInSyncReplica: 2
 
-  #  resources:
-  #    memory: 1Gi
-  #    cpuRequest: "1"
-  #    cpuLimit: "2"
+    resources:
+      memory: 1Gi
+      cpuRequest: "1"
+      cpuLimit: "2"
 
   topics: {}
   #  EXAMPLE

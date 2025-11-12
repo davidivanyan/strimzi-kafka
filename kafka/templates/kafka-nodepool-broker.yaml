@@ -1,4 +1,5 @@
 {{- if .Values.kafka.version }}
+---
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaNodePool
 metadata:
@@ -12,13 +13,14 @@ spec:
   template:
     pod:
       securityContext:
-        runAsUser: 1000001
-        fsGroup: 0
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1001
+        allowPrivilegeEscalation: false
   storage:
     type: jbod
     volumes:
       - id: 0
         type: ephemeral
         kraftMetadata: shared
----
 {{- end }}

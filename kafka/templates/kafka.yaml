@@ -12,11 +12,14 @@ spec:
     version: {{ .Values.kafka.version }}
     metadataVersion: {{ .Values.kafka.metadataVersion }}
     template:
-      pod:
+      kafkaContainer:
         securityContext:
+          readOnlyRootFilesystem: true
           capabilities:
             drop:
               - ALL
+      pod:
+        securityContext:
           runAsNonRoot: true
           runAsUser: 1001
           runAsGroup: 1001

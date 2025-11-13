@@ -11,11 +11,14 @@ spec:
   roles:
     - broker
   template:
-    pod:
+    kafkaContainer:
       securityContext:
+        readOnlyRootFilesystem: true
         capabilities:
           drop:
             - ALL
+    pod:
+      securityContext:
         runAsNonRoot: true
         runAsUser: 1001
         runAsGroup: 1001

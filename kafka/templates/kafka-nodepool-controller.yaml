@@ -13,6 +13,9 @@ spec:
   template:
     kafkaContainer:
       securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+        allowPrivilegeEscalation: false
         readOnlyRootFilesystem: true
         capabilities:
           drop:

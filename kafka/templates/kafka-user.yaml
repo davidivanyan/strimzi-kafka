@@ -1,5 +1,6 @@
 {{- if .Values.kafka.users }}
 {{- range .Values.kafka.users }}
+---
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaUser
 metadata:

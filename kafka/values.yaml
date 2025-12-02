@@ -26,7 +26,7 @@ tolerations: {}
 #    value: "app"
 #    effect: "NoSchedule"
 
-topics: {}
+# topics: {}
 #  EXAMPLE
 #  - name: topic1
 #    replicas: 1

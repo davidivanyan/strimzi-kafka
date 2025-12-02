@@ -1,12 +1,12 @@
-{{- if .Values.kafka.users }}
-{{- range .Values.kafka.users }}
+{{- if .Values.users }}
+{{- range .Values.users }}
 ---
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaUser
 metadata:
   name: {{ .name }}
   labels:
-    strimzi.io/cluster: {{ $.Values.kafka.clusterName }}
+    strimzi.io/cluster: {{ $.Values.clusterName }}
 spec:
   authentication:
     type: {{ .authenticationType | default "tls" }}
@@ -18,7 +18,6 @@ spec:
           type: {{ .type }}
           name: {{ .name }}
           patternType: {{ .patternType | default "literal" }}
-          host: {{ .host | default "*" | quote }}
         operations:
 {{ toYaml .operations | indent 10 }}
 {{- end }}

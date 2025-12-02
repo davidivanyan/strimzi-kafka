@@ -1,13 +1,13 @@
-{{- if .Values.kafka.version }}
+{{- if .Values.version }}
 ---
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaNodePool
 metadata:
   name: broker
   labels:
-    strimzi.io/cluster: {{ .Values.kafka.clusterName }}
+    strimzi.io/cluster: {{ .Values.clusterName }}
 spec:
-  replicas: {{ .Values.kafka.replication.defaultReplicationFactor }}
+  replicas: {{ .Values.replication.defaultReplicationFactor }}
   roles:
     - broker
   template:
@@ -25,6 +25,23 @@ spec:
         runAsNonRoot: true
         runAsUser: 1001
         runAsGroup: 1001
+{{- if .Values.tolerations }}
+      tolerations:
+      {{- toYaml .Values.tolerations | nindent 8 }}
+{{- end }}
+{{- if .Values.labels }}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+{{- range $key, $val := .Values.labels }}
+                  - key: {{ $key }}
+                    operator: In
+                    values:
+                      - {{ quote $val }}
+{{- end }}
+{{- end }}
   storage:
     type: jbod
     volumes:

@@ -1,16 +1,16 @@
-{{- if .Values.kafka.version }}
+{{- if .Values.version }}
 ---
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  name: {{ .Values.kafka.clusterName }}
+  name: {{ .Values.clusterName }}
   annotations:
     strimzi.io/node-pools: enabled
     strimzi.io/kraft: enabled
 spec:
   kafka:
-    version: {{ .Values.kafka.version }}
-    metadataVersion: {{ .Values.kafka.metadataVersion }}
+    version: {{ .Values.version }}
+    metadataVersion: {{ .Values.metadataVersion }}
     template:
       kafkaContainer:
         securityContext:
@@ -26,6 +26,23 @@ spec:
           runAsNonRoot: true
           runAsUser: 1001
           runAsGroup: 1001
+{{- if .Values.tolerations }}
+        tolerations:
+        {{- toYaml .Values.tolerations | nindent 8 }}
+{{- end }}
+{{- if .Values.labels }}
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+{{- range $key, $val := .Values.labels }}
+                    - key: {{ $key }}
+                      operator: In
+                      values:
+                        - {{ quote $val }}
+{{- end }}
+{{- end }}
     listeners:
       - name: plain
         port: 9092
@@ -38,19 +55,19 @@ spec:
     authorization:
       type: simple
     config:
-      auto.create.topics.enable: {{ .Values.kafka.autoCreateTopics }}
-      offsets.topic.replication.factor: {{ .Values.kafka.replication.offsetsReplicationFactor }}
-      transaction.state.log.replication.factor: {{ .Values.kafka.replication.transactionStateReplicationFactor }}
-      transaction.state.log.min.isr: {{ .Values.kafka.replication.transactionStateMinInSyncReplica }}
-      default.replication.factor: {{ .Values.kafka.replication.defaultReplicationFactor }}
-      min.insync.replicas: {{ .Values.kafka.replication.minInSyncReplicas }}
+      auto.create.topics.enable: {{ .Values.autoCreateTopics }}
+      offsets.topic.replication.factor: {{ .Values.replication.offsetsReplicationFactor }}
+      transaction.state.log.replication.factor: {{ .Values.replication.transactionStateReplicationFactor }}
+      transaction.state.log.min.isr: {{ .Values.replication.transactionStateMinInSyncReplica }}
+      default.replication.factor: {{ .Values.replication.defaultReplicationFactor }}
+      min.insync.replicas: {{ .Values.replication.minInSyncReplicas }}
     resources:
       requests:
-        memory: {{ .Values.kafka.resources.memory }}
-        cpu: {{ .Values.kafka.resources.cpuRequest }}
+        memory: {{ .Values.resources.memory }}
+        cpu: {{ .Values.resources.cpuRequest }}
       limits:
-        memory: {{ .Values.kafka.resources.memory }}
-        cpu: {{ .Values.kafka.resources.cpuLimit }}
+        memory: {{ .Values.resources.memory }}
+        cpu: {{ .Values.resources.cpuLimit }}
   entityOperator:
     topicOperator: {}
     userOperator: {}
@@ -82,5 +99,4 @@ spec:
           capabilities:
             drop:
               - ALL
-
 {{- end }}

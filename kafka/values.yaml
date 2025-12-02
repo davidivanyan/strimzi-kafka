@@ -26,22 +26,20 @@ tolerations: {}
 #    value: "app"
 #    effect: "NoSchedule"
 
-topics: {}
-#  EXAMPLE
-#  - name: topic1
-#    replicas: 1
-#    partitions: 50
+topics:
+  - name: topic1
+    replicas: 1
+    partitions: 50
 
-users: {}
-#  EXAMPLE
-#   - name: user1
-#     authenticationType: tls
-#     authorizationType: simple
-#     acls:
-#       - type: topic
-#         name: topic1
-#         patternType: literal
-#         operations:
-#           - Describe
-#           - Read
-#           - Write
+users:
+  - name: user1
+    authenticationType: tls
+    authorizationType: simple
+    acls:
+      - type: topic
+        name: topic1
+        patternType: literal
+        operations:
+          - Describe
+          - Read
+          - Write

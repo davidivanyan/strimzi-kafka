@@ -1,0 +1,15 @@
+image:
+  repository: kafka-producer
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+env:
+  KAFKA_TOPIC: "my-topic"
+  KAFKA_BOOTSTRAP: "kafka-kafka-bootstrap:9093"
+
+# Optional secret with Strimzi TLS certs
+certSecretName: "kafka-user"
+
+resources: {}

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: my-producer-chart
+description: Generic deployment chart for any Docker image
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "my-producer-chart.fullname" . }}
+  name: {{ include "producer.fullname" . }}
 spec:
   type: ClusterIP
   ports:
     - port: 80
       targetPort: 80
   selector:
-    app: {{ include "my-producer-chart.fullname" . }}
+    app: {{ include "producer.fullname" . }}

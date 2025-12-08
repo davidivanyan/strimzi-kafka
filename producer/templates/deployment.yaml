@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "my-producer-chart.fullname" . }}
+  name: {{ include "producer.fullname" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "my-producer-chart.fullname" . }}
+      app: {{ include "producer.fullname" . }}
   template:
     metadata:
       labels:
-        app: {{ include "my-producer-chart.fullname" . }}
+        app: {{ include "producer.fullname" . }}
     spec:
       containers:
         - name: app
